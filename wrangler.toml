@@ -1,0 +1,20 @@
+name = "leobot"
+main = "src/index.js"
+compatibility_date = "2026-08-29"
+
+[vars]
+ENVIRONMENT = "production"
+
+# URL webhook yang dikirim ke BuatQris saat membuat QRIS, supaya
+# BuatQris tahu ke mana harus melapor saat pembayaran masuk.
+# GANTI dengan URL Worker kamu sendiri + path "/webhook/buatqris".
+# Sebelumnya nilai ini hardcode di src/payment.js — sekarang wajib
+# diisi di sini.
+CALLBACK_URL = "https://GANTI-DENGAN-NAMA-WORKER-KAMU.workers.dev/webhook/buatqris"
+
+# Menjalankan cron setiap 10 menit: expire order PENDING yang
+# QR-nya sudah lewat waktu, kirim reminder VIP H-24 jam, dan
+# auto-kick member VIP yang masa aktifnya sudah habis.
+# Sebelumnya tidak ada trigger cron sama sekali di proyek ini.
+[triggers]
+crons = ["*/10 * * * *"]
